@@ -1,0 +1,17 @@
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        //second case will improve run time 
+      if(x<0 || (x%10==0 && x!=0)) return false;
+      int rev=0;
+     
+      
+      while(x>rev){
+       
+          rev=rev*10+x%10;
+          x=x/10;
+      }
+      //second case when x is odd lenth i.e 34543=>rev=345,x=34
+      return x==rev || x==rev/10;
+    }
+};
