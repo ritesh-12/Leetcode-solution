@@ -1,0 +1,21 @@
+class Solution {
+public:
+    	int divide(int d, int dv) {
+        if(d == dv)
+            return 1;
+        bool isPositive = (d<0 == dv<0);    // if both are of same sign, answer is positive
+        unsigned int a = abs(d);
+        unsigned int b = abs(dv);
+        unsigned int ans = 0;
+        while(a >= b){  // while dividend is greater than or equal to divisor
+            short q = 0;
+            while(a > (b<<(q+1)))
+                q++;
+            ans += (1<<q);  // add the power of 2 found to the answer
+            a = a - (b<<q);  // reduce the dividend by divisor * power of 2 found
+        }
+        if(ans == (1<<31) and isPositive)   // if ans cannot be stored in signed int
+            return INT_MAX;
+        return isPositive ? ans : -ans;
+    }
+};
